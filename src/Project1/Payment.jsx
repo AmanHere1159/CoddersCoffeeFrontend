@@ -30,7 +30,7 @@ const Payment = ({ closeModal, coffeeName }) => {
   };
 
   const handlePayNow = async () => {
-    closeModal(); // close popup
+  
     try {
       const datareturn = await axios.post(`${BACKEND_URL}/Coffee/details`,payment
       );
@@ -38,6 +38,7 @@ const Payment = ({ closeModal, coffeeName }) => {
       if (datareturn.status === 201) {
         localStorage.setItem("productInfo", JSON.stringify(productInfo));
         navigate("/Pay");
+          closeModal(); // close popup
       }
 
       // navigate and send data
