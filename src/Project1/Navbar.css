@@ -1,0 +1,49 @@
+.bari{
+    width: 100%;
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: space-between;
+    justify-content: space-between;
+    /* justify-content: space-evenly; */
+  
+}
+.what{
+    padding-top: 37px;
+    display: flex;
+     word-spacing: 2px; 
+}
+.her1{
+    color: #F19509;
+    font-size: 2rem;
+    margin-left: 40px;
+    /* display: flex;
+    flex-direction: column; */
+    align-self: center;
+}
+.her2{
+    /* display: flex; */
+    color: rgb(251, 251, 247);
+    font-size: 2rem;
+    align-self: center;
+    
+    /* padding-left: -700px; */
+    /* margin-right: -390px; */
+    /* background-color: rgb(198, 125, 28); */
+}
+.him3{
+    height: 20px;
+    width: 30px;
+    /* z-index:3; */
+    /* padding-left: 440px; */
+    margin-top: -90px;
+    margin-left: -248px;
+    font-style: italic;
+    /* background-color:saddlebrown; */
+    font-size: 150px;
+    /* font-size: medium; */
+    font-weight: 800;
+    color:#21262F;
+    
+    /* position: absolute; */
+    /* position: relative; */
+}

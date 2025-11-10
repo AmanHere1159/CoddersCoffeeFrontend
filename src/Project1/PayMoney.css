@@ -1,0 +1,132 @@
+.arrowpic{
+    margin-top: -20;
+    height: 30px;
+    width: 30px;
+}
+/* Container */
+.pay-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3f4f6; /* light gray */
+  font-family: "Poppins", sans-serif;
+}
+
+/* Card */
+.pay-card {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Title */
+.pay-title {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #1f2937;
+}
+
+/* Row */
+.pay-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.pay-label {
+  color: #374151;
+  font-weight: 500;
+}
+
+.pay-value {
+  font-weight: 600;
+  color: #111827;
+}
+
+.pay-total {
+  font-weight: 700;
+  color: #16a34a; /* green */
+}
+
+/* Input */
+.pay-input {
+  margin-bottom: 1.5rem;
+}
+
+.pay-pin {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+  transition: border 0.2s ease-in-out;
+}
+
+.pay-pin:focus {
+  border: 1px solid #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.3);
+}
+
+/* Button */
+.pay-btn {
+  width: 100%;
+  background: #2563eb;
+  color: white;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.pay-btn:hover {
+  background: #1d4ed8;
+}
+/* Row layout */
+.pay-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+/* Quantity control (arrows + value) */
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem; /* space between arrows and number */
+}
+
+/* Arrows */
+.arrowpic {
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 4px;
+  transition: transform 0.2s;
+}
+
+/* Specific styles */
+.arrowpic.dec {
+  background: #f89595; /* red */
+}
+
+.arrowpic.inc {
+  background: #22c55e; /* green */
+}
+
+.arrowpic:hover {
+  transform: scale(1.1);
+}
