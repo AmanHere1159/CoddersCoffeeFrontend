@@ -4,7 +4,7 @@ import coffee1 from "./accessts/coffee1.png";
 import coffee2 from "./accessts/coffee2.png";
 import { easeIn, easeInOut, motion, spring, useInView } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { dataContext } from "../Pay1";
+import { dataContext } from "./Pay1";
 import axios from "axios";
 
 const Payment = ({ closeModal, coffeeName }) => {

@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../Navbar11";
 import { easeIn, easeInOut, motion, spring, useInView } from "framer-motion";
 
 import coffee1 from "./accessts/coffee1.png";
@@ -19,8 +18,7 @@ import { FaFacebook } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaTelegram } from "react-icons/fa6";
 import { FaGoogle } from "react-icons/fa";
-
-import Navbar11 from "../Navbar11";
+import Navbar11 from "./Navbar11"
 import { NavLink } from "react-router-dom";
 import Buyer from "./Buyer";
 
@@ -40,7 +38,8 @@ const Copy = () => {
     <div className="page">
       {/* head starts */}
       <div className="head">
-        <Navbar11 />
+        <Navbar11/>
+        {/* <Navbar11 /> */}
         <div className="usingdiv"></div>
 
         <div className="upperdata">
