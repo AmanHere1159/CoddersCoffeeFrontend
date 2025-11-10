@@ -11,7 +11,8 @@ const Payment = ({ closeModal, coffeeName }) => {
   const ref = useRef(null);
   const view = useInView(ref);
   const navigate = useNavigate();
-  const BACKEND_URL = import.meta.env.VITE_BACKENDURL;
+    const BACKEND_URL=import.meta.env.VITE_BACKENDURL
+
 
   const [payment, setPayment] = useState({
     cardName: "",
@@ -31,9 +32,7 @@ const Payment = ({ closeModal, coffeeName }) => {
   const handlePayNow = async () => {
     closeModal(); // close popup
     try {
-      const datareturn = await axios.post(
-        `${BACKEND_URL}/Coffee/details`,
-        payment
+      const datareturn = await axios.post(`${BACKEND_URL}/Coffee/details`,payment
       );
       console.log(datareturn.status);
       if (datareturn.status === 201) {

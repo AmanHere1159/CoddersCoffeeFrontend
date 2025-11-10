@@ -9,7 +9,7 @@ const PayMoney = () => {
   const [quantity, setQuantity] = useState(1); // Initialize with 1
   const [pin, setPin] = useState("");
   const navigate = useNavigate();
-  const BACKEND_URL=import.meta.env.VITE_BACKENDURL
+    const BACKEND_URL=import.meta.env.VITE_BACKENDURL
 
   
   const storedProduct = localStorage.getItem("productInfo");
