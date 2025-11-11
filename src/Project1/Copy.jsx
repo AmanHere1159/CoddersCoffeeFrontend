@@ -230,9 +230,7 @@ const Copy = () => {
                     initial={{ x: 0, y: 100, opacity: 0 }}
                     animate={{ x: 0, y: 0 }}
                     whileInView={{ x: 0, y: 0, opacity: 1 }}
-                    transition={{ delay: 0.32, duration: 0.18 }}
-                    
-                  >
+                    transition={{ delay: 0.32, duration: 0.18 }}>
                 SignUp
                   </motion.button>
                   </NavLink>   

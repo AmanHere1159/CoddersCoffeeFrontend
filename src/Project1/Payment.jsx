@@ -1,18 +1,12 @@
-import React, { useRef, useState, useContext } from "react";
+import React, { useState } from "react";
 import "./Payment.css";
-import coffee1 from "./accessts/coffee1.png";
-import coffee2 from "./accessts/coffee2.png";
-import { easeIn, easeInOut, motion, spring, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { dataContext } from "./Pay1";
 import axios from "axios";
 
 const Payment = ({ closeModal, coffeeName }) => {
-  const ref = useRef(null);
-  const view = useInView(ref);
   const navigate = useNavigate();
-    const BACKEND_URL=import.meta.env.VITE_BACKENDURL
-
+  const BACKEND_URL = import.meta.env.VITE_BACKENDURL;
 
   const [payment, setPayment] = useState({
     cardName: "",
@@ -20,29 +14,46 @@ const Payment = ({ closeModal, coffeeName }) => {
     cvv: "",
     pin: "",
   });
-
-  const productInfo = {
-    coffeeName,
-  };
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
-    setPayment({ ...payment, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setPayment((prev) => ({ ...prev, [name]: value }));
   };
 
   const handlePayNow = async () => {
-  
-    try {
-      const datareturn = await axios.post(`${BACKEND_URL}/Coffee/details`,payment
-      );
-      console.log(datareturn.status);
-      if (datareturn.status === 201) {
-        localStorage.setItem("productInfo", JSON.stringify(productInfo));
-        navigate("/Pay");
-          closeModal(); // close popup
-      }
+    const { cardName, cardNumber, cvv, pin } = payment;
 
-      // navigate and send data
-    } catch (error) {}
+    if (!cardName || !cardNumber || !cvv || !pin) {
+      setError("Please fill in all fields");
+      return;
+    }
+
+    setLoading(true);
+    setError("");
+    closeModal();
+
+    try {
+      const res = await axios.post(
+        `${BACKEND_URL}/Coffee/details`,
+        payment,
+        { withCredentials: true }
+      );
+
+      if (res.status === 201) {
+        localStorage.setItem(
+          "productInfo",
+          JSON.stringify({ coffeeName })
+        );
+        navigate("/Pay");
+      }
+    } catch (err) {
+      console.error(err);
+      setError("Payment failed. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -51,60 +62,41 @@ const Payment = ({ closeModal, coffeeName }) => {
       initial={{ scale: 0.8, opacity: 0, y: -50 }}
       animate={{ scale: 1, opacity: 1, y: 0 }}
       exit={{ scale: 0.8, opacity: 0, y: -50 }}
-      transition={{ delay: 0.75, duration: 0.3, ease: "easeOut" }}
+      transition={{ delay: 0.3, duration: 0.4, ease: "easeOut" }}
     >
       <div className="payment-container12">
-        <h2 className="h212">Payment Gateway {coffeeName}</h2>
-        <form id="paymentForm">
-          <label className="label12" htmlFor="cardName">
-            Cardholder Name
-          </label>
-          <input
-            className="input12"
-            onChange={handleChange}
-            type="text"
-            name="cardName"
-            required
-          ></input>
+        <h2 className="h212">Payment Gateway — {coffeeName}</h2>
 
-          <label className="label12" htmlFor="cardNumber">
-            Card Number
-          </label>
-          <input
-            className="input12"
-            onChange={handleChange}
-            type="text"
-            name="cardNumber"
-            maxLength={16}
-            required
-          ></input>
+        <form id="paymentForm" onSubmit={(e) => e.preventDefault()}>
+          {["cardName", "cardNumber", "cvv", "pin"].map((field, idx) => (
+            <div key={idx}>
+              <label className="label12" htmlFor={field}>
+                {field === "cardName"
+                  ? "Cardholder Name"
+                  : field === "cardNumber"
+                  ? "Card Number"
+                  : field.toUpperCase()}
+              </label>
+              <input
+                className="input12"
+                onChange={handleChange}
+                type={field === "cardName" ? "text" : "password"}
+                name={field}
+                maxLength={field === "cardNumber" ? 16 : field === "pin" ? 4 : 3}
+                required
+              />
+            </div>
+          ))}
 
-          <label className="label12" htmlFor="cvv">
-            CVV
-          </label>
-          <input
-            className="input12"
-            onChange={handleChange}
-            type="password"
-            name="cvv"
-            maxLength={3}
-            required
-          ></input>
-          <label className="label12" htmlFor="cvv">
-            PIN
-          </label>
-          <input
-            className="input12"
-            onChange={handleChange}
-            type="password"
-            name="pin"
-            maxLength={4}
-            required
-          ></input>
+          {error && <p className="error-text">{error}</p>}
 
-          {/* <div>{data}</div> */}
-          <button className="button12 " type="button" onClick={handlePayNow}>
-            Pay Now
+          <button
+            className="button12"
+            type="button"
+            onClick={handlePayNow}
+            disabled={loading}
+          >
+            {loading ? "Processing..." : "Pay Now"}
           </button>
         </form>
       </div>
