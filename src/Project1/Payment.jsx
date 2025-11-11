@@ -25,7 +25,7 @@ const Payment = ({ closeModal, coffeeName }) => {
     const { cardName, cardNumber, cvv, pin } = payment;
 
     // 🛡️ Basic Validation
-    if (!cardName || cardNumber.length !== 16 || cvv.length !== 3 || pin.length !== 4) {
+    if (!cardName || cardNumber.length !== 8 || cvv.length !== 3 || pin.length !== 4) {
       alert("Please enter valid payment details.");
       return;
     }
@@ -73,7 +73,7 @@ const Payment = ({ closeModal, coffeeName }) => {
             onChange={handleChange}
             type="text"
             name="cardNumber"
-            maxLength={16}
+            maxLength={8}
             required
           />
 
