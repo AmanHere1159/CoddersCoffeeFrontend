@@ -42,7 +42,7 @@ const Payment = ({ closeModal, coffeeName }) => {
         setTimeout(() => closeModal(), 300);
       }
     } catch (error) {
-      console.error(error);
+      console.error(`${error} and the status code is error is ${res.status}`);
       alert("Payment failed. Please try again.");
     }
   };
