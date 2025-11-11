@@ -46,8 +46,8 @@ const PayMoney = () => {
     }
 
     try {
-      // const res = await axios.post(`${BACKEND_URL}/Coffee/order`, paymentInfo);
-      const res = 201
+      const res = await axios.post(`${BACKEND_URL}/Coffee/order`, paymentInfo);
+      // const res = 201
 
       if (res.status === 201) {
         alert("Payment Successful! Thank you for your order.");
