@@ -61,7 +61,7 @@ export default function Signup() {
       setSubmitting(true);
     // API CALLING
       const res = await axios.post(
-        `${BACKEND_URL}/Signup`,
+        `${BACKEND_URL}/Coffee/Signup`,
         payload
       );
       if (res.status === 200) {
